@@ -40,7 +40,7 @@ struct RepeatDaysView: View {
                 } label: {
                     HStack {
                         Text(weekDay.stringName.capitalized)
-                            .foregroundColor(.black)
+                            .foregroundColor(colorScheme == .dark ? .white : .black)
                         Spacer()
                         if weekDay.isSelected {
                             Image(systemName: "checkmark")

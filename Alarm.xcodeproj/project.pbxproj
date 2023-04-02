@@ -14,10 +14,13 @@
 		F4343FE729A2592C0036D4BA /* Alarm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4343FE529A2592C0036D4BA /* Alarm.xcdatamodeld */; };
 		F4343FEE29A25A5E0036D4BA /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4343FED29A25A5E0036D4BA /* AddAlarmView.swift */; };
 		F44FCF2F29BD0DE5002F6FB1 /* AlarmNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44FCF2E29BD0DE5002F6FB1 /* AlarmNameView.swift */; };
+		F4B9E3F329DA18D7003715C1 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B9E3F229DA18D7003715C1 /* ViewExtensions.swift */; };
 		F4DCCEAB29CE761900CC4B19 /* AlarmRepeatSignalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCCEAA29CE761900CC4B19 /* AlarmRepeatSignalView.swift */; };
 		F4DCCEAF29CE841C00CC4B19 /* AlarmDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCCEAE29CE841C00CC4B19 /* AlarmDataController.swift */; };
 		F4DCCEB629CF609300CC4B19 /* RepeatDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCCEB529CF609300CC4B19 /* RepeatDaysView.swift */; };
-		F4DCCEB929CF64F100CC4B19 /* DateFormaterForRepeatDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCCEB829CF64F100CC4B19 /* DateFormaterForRepeatDaysView.swift */; };
+		F4DCCEB929CF64F100CC4B19 /* RepeatDaysViewDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCCEB829CF64F100CC4B19 /* RepeatDaysViewDataStore.swift */; };
+		F4DCCEBC29CFC00400CC4B19 /* MelodiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCCEBB29CFC00400CC4B19 /* MelodiesView.swift */; };
+		F4DCCEBE29CFC17A00CC4B19 /* MelodiesDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCCEBD29CFC17A00CC4B19 /* MelodiesDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,10 +32,14 @@
 		F4343FE629A2592C0036D4BA /* Alarm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alarm.xcdatamodel; sourceTree = "<group>"; };
 		F4343FED29A25A5E0036D4BA /* AddAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
 		F44FCF2E29BD0DE5002F6FB1 /* AlarmNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmNameView.swift; sourceTree = "<group>"; };
+		F4B9E3F229DA18D7003715C1 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		F4DCCEAA29CE761900CC4B19 /* AlarmRepeatSignalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRepeatSignalView.swift; sourceTree = "<group>"; };
 		F4DCCEAE29CE841C00CC4B19 /* AlarmDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDataController.swift; sourceTree = "<group>"; };
 		F4DCCEB529CF609300CC4B19 /* RepeatDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysView.swift; sourceTree = "<group>"; };
-		F4DCCEB829CF64F100CC4B19 /* DateFormaterForRepeatDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormaterForRepeatDaysView.swift; sourceTree = "<group>"; };
+		F4DCCEB829CF64F100CC4B19 /* RepeatDaysViewDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysViewDataStore.swift; sourceTree = "<group>"; };
+		F4DCCEBB29CFC00400CC4B19 /* MelodiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodiesView.swift; sourceTree = "<group>"; };
+		F4DCCEBD29CFC17A00CC4B19 /* MelodiesDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodiesDataStore.swift; sourceTree = "<group>"; };
+		F4DCCEBF29CFC2CD00CC4B19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +72,7 @@
 		F4343FD929A2592A0036D4BA /* Alarm */ = {
 			isa = PBXGroup;
 			children = (
+				F4DCCEBF29CFC2CD00CC4B19 /* Info.plist */,
 				F4DCCEB029CF5ED700CC4B19 /* App */,
 				F4DCCEAC29CE83FE00CC4B19 /* Common */,
 				F44FCF2829BD0B51002F6FB1 /* Views */,
@@ -109,10 +117,19 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		F4B9E3F129DA18C4003715C1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F4B9E3F229DA18D7003715C1 /* ViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F4DCCEAC29CE83FE00CC4B19 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				F4DCCEB229CF5F1C00CC4B19 /* CoreData */,
+				F4B9E3F129DA18C4003715C1 /* Extensions */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -146,6 +163,7 @@
 		F4DCCEB429CF607F00CC4B19 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F4DCCEBA29CFBFEF00CC4B19 /* MelodiesView */,
 				F4DCCEB729CF64C400CC4B19 /* RepeatDaysView */,
 			);
 			path = Views;
@@ -154,10 +172,19 @@
 		F4DCCEB729CF64C400CC4B19 /* RepeatDaysView */ = {
 			isa = PBXGroup;
 			children = (
+				F4DCCEB829CF64F100CC4B19 /* RepeatDaysViewDataStore.swift */,
 				F4DCCEB529CF609300CC4B19 /* RepeatDaysView.swift */,
-				F4DCCEB829CF64F100CC4B19 /* DateFormaterForRepeatDaysView.swift */,
 			);
 			path = RepeatDaysView;
+			sourceTree = "<group>";
+		};
+		F4DCCEBA29CFBFEF00CC4B19 /* MelodiesView */ = {
+			isa = PBXGroup;
+			children = (
+				F4DCCEBD29CFC17A00CC4B19 /* MelodiesDataStore.swift */,
+				F4DCCEBB29CFC00400CC4B19 /* MelodiesView.swift */,
+			);
+			path = MelodiesView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,15 +257,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4DCCEBC29CFC00400CC4B19 /* MelodiesView.swift in Sources */,
 				F4343FEE29A25A5E0036D4BA /* AddAlarmView.swift in Sources */,
 				F4343FDD29A2592A0036D4BA /* MainContentView.swift in Sources */,
 				F4DCCEB629CF609300CC4B19 /* RepeatDaysView.swift in Sources */,
 				F44FCF2F29BD0DE5002F6FB1 /* AlarmNameView.swift in Sources */,
 				F4343FDB29A2592A0036D4BA /* AlarmApp.swift in Sources */,
-				F4DCCEB929CF64F100CC4B19 /* DateFormaterForRepeatDaysView.swift in Sources */,
+				F4DCCEB929CF64F100CC4B19 /* RepeatDaysViewDataStore.swift in Sources */,
+				F4DCCEBE29CFC17A00CC4B19 /* MelodiesDataStore.swift in Sources */,
 				F4DCCEAF29CE841C00CC4B19 /* AlarmDataController.swift in Sources */,
 				F4DCCEAB29CE761900CC4B19 /* AlarmRepeatSignalView.swift in Sources */,
 				F4343FE729A2592C0036D4BA /* Alarm.xcdatamodeld in Sources */,
+				F4B9E3F329DA18D7003715C1 /* ViewExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +400,8 @@
 				DEVELOPMENT_TEAM = GBDSAYFJ49;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Alarm/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "\"НАДО\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -400,6 +432,8 @@
 				DEVELOPMENT_TEAM = GBDSAYFJ49;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Alarm/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "\"НАДО\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

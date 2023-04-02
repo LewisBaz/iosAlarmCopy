@@ -11,9 +11,13 @@ struct AddAlarmView: View {
     
     // MARK: - Environment Properties
     
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
+    
+    // MARK: - State Object Properties
+    
+    @StateObject private var melodiesDataStore = MelodiesDataStore()
     
     // MARK: - State Properties
     
@@ -27,6 +31,7 @@ struct AddAlarmView: View {
     // MARK: - Binding Properties
     
     @Binding var newAlarm: Alarm
+    @Binding var ringtone: Ringtone?
     
     // MARK: - Body
     
@@ -48,18 +53,24 @@ struct AddAlarmView: View {
                             Text(selectedRepeatDays.map{$0.shortName}.joined(separator: ", "))
                         }
                     }
+
                     AlarmNameView(name: $alarmName)
+                    
                     NavigationLink {
-                        
+                        MelodiesView(selectedRingtone: $ringtone, dataStore: melodiesDataStore)
                     } label: {
                         HStack {
                             Text("Мелодия")
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                            
+                            Text(ringtone?.name.dropLast(4) ?? "")
                         }
                     }
+                    
                     AlarmRepeatSignalView(isSelected: $isAlarmRepeat)
                 }
+                .gesture(DragGesture().onChanged { _ in
+                    hideKeyboard()
+                })
             }
             .navigationBarTitle("Добавление", displayMode: .inline)
             .toolbar {
@@ -76,6 +87,7 @@ struct AddAlarmView: View {
                         newAlarm.name = alarmName
                         newAlarm.isRepeat = isAlarmRepeat
                         newAlarm.repeatDays = selectedRepeatDays.map({ String($0.weekDayOrderNumber) }).joined(separator: ", ")
+                        newAlarm.melodyId = Int16(ringtone?.id ?? 1)
                         self.newAlarm = newAlarm
                     }
                     .foregroundColor(colorScheme == .dark ? .orange : .blue)
@@ -88,6 +100,6 @@ struct AddAlarmView: View {
 struct AddAlarmView_Previews: PreviewProvider {
     
     static var previews: some View {
-        AddAlarmView(newAlarm: .constant(Alarm()))
+        AddAlarmView(newAlarm: .constant(Alarm()), ringtone: .constant(.none))
     }
 }

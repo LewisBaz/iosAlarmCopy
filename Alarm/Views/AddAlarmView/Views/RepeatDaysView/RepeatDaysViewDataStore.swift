@@ -1,5 +1,5 @@
 //
-//  DateFormaterForRepeatDaysView.swift
+//  RepeatDaysViewDataStore.swift
 //  Alarm
 //
 //  Created by Lewis on 25.03.2023.

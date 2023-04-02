@@ -17,12 +17,14 @@ struct MainContentView: View {
     // MARK: - Environment Properties
     
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.colorScheme) var colorScheme
     
     // MARK: - State Properties
     
     @State var showSheet = false
     
     @State var newAlarm = Alarm()
+    @State var ringtone: Ringtone?
     
     // MARK: - Body
 
@@ -43,6 +45,7 @@ struct MainContentView: View {
                     Button("Править") {
                         
                     }
+                    .foregroundColor(colorScheme == .dark ? .orange : .blue)
                 }
                 ToolbarItem {
                     Button {
@@ -50,13 +53,20 @@ struct MainContentView: View {
                     } label: {
                         Label("Add Item", systemImage: "plus")
                     }
+                    .foregroundColor(colorScheme == .dark ? .orange : .blue)
                     .sheet(isPresented: $showSheet) {
-                        AddAlarmView(newAlarm: $newAlarm)
+                        AddAlarmView(newAlarm: $newAlarm, ringtone: $ringtone)
                     }
                     .onChange(of: newAlarm, perform: { newValue in 
                         print(newAlarm)
+                        showSheet = false
                         // additem
                     })
+                    .onChange(of: showSheet) { newValue in
+                        if newValue == false {
+                            ringtone = nil
+                        }
+                    }
                 }
             }
             .navigationBarTitle("Будильник", displayMode: .automatic)
