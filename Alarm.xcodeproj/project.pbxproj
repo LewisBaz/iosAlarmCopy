@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F422710C2A36349500EFD079 /* DatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F422710B2A36349500EFD079 /* DatesManager.swift */; };
 		F4343FDB29A2592A0036D4BA /* AlarmApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4343FDA29A2592A0036D4BA /* AlarmApp.swift */; };
 		F4343FDD29A2592A0036D4BA /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4343FDC29A2592A0036D4BA /* MainContentView.swift */; };
 		F4343FDF29A2592C0036D4BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4343FDE29A2592C0036D4BA /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F422710B2A36349500EFD079 /* DatesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesManager.swift; sourceTree = "<group>"; };
 		F4343FD729A2592A0036D4BA /* Alarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4343FDA29A2592A0036D4BA /* AlarmApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmApp.swift; sourceTree = "<group>"; };
 		F4343FDC29A2592A0036D4BA /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F422710A2A36348A00EFD079 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F422710B2A36349500EFD079 /* DatesManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		F4343FCE29A2592A0036D4BA = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +138,7 @@
 		F4DCCEAC29CE83FE00CC4B19 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F422710A2A36348A00EFD079 /* Managers */,
 				F4DCCEB229CF5F1C00CC4B19 /* CoreData */,
 				F4B9E3F129DA18C4003715C1 /* Extensions */,
 			);
@@ -267,6 +278,7 @@
 				F4DCCEBE29CFC17A00CC4B19 /* MelodiesDataStore.swift in Sources */,
 				F4DCCEAF29CE841C00CC4B19 /* AlarmDataController.swift in Sources */,
 				F4DCCEAB29CE761900CC4B19 /* AlarmRepeatSignalView.swift in Sources */,
+				F422710C2A36349500EFD079 /* DatesManager.swift in Sources */,
 				F4343FE729A2592C0036D4BA /* Alarm.xcdatamodeld in Sources */,
 				F4B9E3F329DA18D7003715C1 /* ViewExtensions.swift in Sources */,
 			);

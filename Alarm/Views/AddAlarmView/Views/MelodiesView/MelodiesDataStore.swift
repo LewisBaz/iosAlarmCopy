@@ -19,7 +19,7 @@ final class MelodiesDataStore: ObservableObject {
     
     private var directory: NSMutableDictionary = [
         "path" : "/Library/Ringtones",
-        "files" : []
+        "files" : [String]()
     ]
     
     @Published var filesList: [Ringtone] = [Ringtone(id: 100, name: "kek")]

@@ -21,48 +21,76 @@ struct MainContentView: View {
     
     // MARK: - State Properties
     
-    @State var showSheet = false
+    @State var showAddAlarmSheet = false
+    @State var showEditAlarmSheet = false
     
     @State var newAlarm = Alarm()
     @State var ringtone: Ringtone?
+    
+    @State var editMode: EditMode = .inactive
+    @State var isEditing = false
+    
+    private let datesManager = DatesManager()
     
     // MARK: - Body
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(alarms) { item in
-                    Button(action: {
-                        self.showSheet = true
-                    }){
-                        Text(item.name ?? "ddd")
+                ForEach(Array(alarms.enumerated().sorted(by: { $0.element.time! < $1.element.time! })), id: \.element) { i, item in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(item.time ?? Date(), format: .dateTime.hour().minute())
+                                .font(.system(size: 40))
+                            if item.repeatDays != "0" {
+                                Text("\(item.name ?? "Будильник"), \(datesManager.getShortWeekDay(weekDaysNumbersString: item.repeatDays))")
+                            } else {
+                                Text(item.name ?? "Будильник")
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        if !isEditing {
+                            Toggle("", isOn: Binding<Bool>(
+                                get: { item.isOn },
+                                set: {
+                                    item.isOn = $0
+                                    try? viewContext.save()
+                                }
+                            ))
+                            .frame(width: 50, alignment: .trailing)
+                        } else {
+                            Image(systemName: "chevron.right")
+                        }
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
+            .environment(\.editMode, $editMode)
+            .animation(.default, value: isEditing)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Править") {
-                        
-                    }
+                    Button(!isEditing ? "Править" : "Готово", action: {
+                        isEditing.toggle()
+                        editMode = isEditing ? .active : .inactive
+                    })
                     .foregroundColor(colorScheme == .dark ? .orange : .blue)
                 }
                 ToolbarItem {
                     Button {
-                        showSheet = true
+                        showAddAlarmSheet = true
                     } label: {
                         Label("Add Item", systemImage: "plus")
                     }
                     .foregroundColor(colorScheme == .dark ? .orange : .blue)
-                    .sheet(isPresented: $showSheet) {
+                    .sheet(isPresented: $showAddAlarmSheet) {
                         AddAlarmView(newAlarm: $newAlarm, ringtone: $ringtone)
                     }
                     .onChange(of: newAlarm, perform: { newValue in 
                         print(newAlarm)
-                        showSheet = false
-                        // additem
+                        showAddAlarmSheet = false
+                        addItem(item: newAlarm)
                     })
-                    .onChange(of: showSheet) { newValue in
+                    .onChange(of: showAddAlarmSheet) { newValue in
                         if newValue == false {
                             ringtone = nil
                         }
@@ -73,17 +101,11 @@ struct MainContentView: View {
         }
     }
 
-    private func addItem(name: String?) {
+    private func addItem(item: Alarm) {
         withAnimation {
-            let newAlarm = Alarm(context: viewContext)
-            newAlarm.name = name
-            newAlarm.id = UUID()
-
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
@@ -92,26 +114,23 @@ struct MainContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { alarms[$0] }.forEach(viewContext.delete)
+            isEditing = false
+            editMode = .inactive
+            
+            for index in offsets {
+                let alarm = alarms[index]
+                viewContext.delete(alarm)
+            }
 
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

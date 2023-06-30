@@ -21,6 +21,8 @@ struct WeekDay: Identifiable, Equatable {
 
 struct RepeatDaysViewDataStore {
     
+    private let datesManager = DatesManager()
+    
     private let weekDays = ["Каждый понедельник", "Каждый вторник", "Каждую среду", "Каждый четверг", "Каждую пятницу", "Каждую субботу", "Каждое воскресенье"]
     
     var weekDaysModels: [WeekDay] = []
@@ -39,30 +41,9 @@ struct RepeatDaysViewDataStore {
         var weekDaysToReturn: [WeekDay] = []
         var index = 1
         weekDays.forEach({
-            weekDaysToReturn.append(WeekDay(stringName: $0, weekDayOrderNumber: index, shortName: getShortWeekDay(weekDayOrderNumber: index)))
+            weekDaysToReturn.append(WeekDay(stringName: $0, weekDayOrderNumber: index, shortName: datesManager.getShortWeekDay(weekDayOrderNumber: index)))
             index += 1
         })
         return weekDaysToReturn
-    }
-    
-    private func getShortWeekDay(weekDayOrderNumber: Int) -> String {
-        switch weekDayOrderNumber {
-        case 1:
-            return "ПН"
-        case 2:
-            return "ВТ"
-        case 3:
-            return "СР"
-        case 4:
-            return "ЧТ"
-        case 5:
-            return "ПТ"
-        case 6:
-            return "СБ"
-        case 7:
-            return "ВС"
-        default:
-            return ""
-        }
     }
 }

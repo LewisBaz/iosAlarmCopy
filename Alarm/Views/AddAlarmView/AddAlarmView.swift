@@ -84,10 +84,16 @@ struct AddAlarmView: View {
                     Button("Сохранить") {
                         let newAlarm = Alarm(context: viewContext)
                         newAlarm.id = UUID()
-                        newAlarm.name = alarmName
+                        if alarmName.isEmpty {
+                            newAlarm.name = "Будильник"
+                        } else {
+                            newAlarm.name = alarmName
+                        }
                         newAlarm.isRepeat = isAlarmRepeat
                         newAlarm.repeatDays = selectedRepeatDays.map({ String($0.weekDayOrderNumber) }).joined(separator: ", ")
                         newAlarm.melodyId = Int16(ringtone?.id ?? 1)
+                        newAlarm.time = currentDate
+                        newAlarm.isOn = true
                         self.newAlarm = newAlarm
                     }
                     .foregroundColor(colorScheme == .dark ? .orange : .blue)
